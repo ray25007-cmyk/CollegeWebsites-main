@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+body {
+    font-family: "Nunito", Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    background-color: #e3f2fd;
+}
+h2 {
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6, .home-title, .msg h2{
+    font-family: "Crete Round", Verdana, Tahoma, sans-serif;
+}
+header{
+    background-color: #102d37;
+    display: grid;
+    grid-template-columns: 150px auto;
+    align-items: center;
+}
+nav a{
+ text-align: center;
+ color: #fbe072;
+ text-decoration: none;   
+ padding: 35px;
+}
+nav a:hover{
+    background-color:#1f586b ;
+    color: #ffeda3;
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+}
+.logo{
+    width: 80px;
+    margin-left: 10px;
+}
+#faqTitle{
+    display: grid;
+    grid-template-areas: 
+    "Title Title"
+    "Paragraph Text";
+    background-color: #17414f;
+    color: #fbe072;
+    grid-template-columns: 60vw 39vw;
+    align-items: center;
+    justify-items: center;
+    padding: 50px;
+}
+#faqTitle > h1{
+    grid-area: Title;
+    text-align: center;
+}
+#faqTitle > img{
+    width: 300px;
+    margin-right: 30px;
+    box-shadow: 4px 4px 4px #102d37;
+}
+hr{
+    margin: 0px;
+}
+.question{
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0px 10px;
+    padding: 30px 5px;
+}
+#faqQuestions{
+    background-color: white;
+    border: #102d37 solid 5px;
+    width: 1000px;
+    margin: 30px auto;
+    user-select: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px #296b81;
+}
+#faqQuestions > div > p:not(.question){
+    display: none;
+    margin: 0px 10px;
+    padding-bottom: 20px;
+}
+#faqQuestions> div{
+    margin: 0px;
+    transition: all .4s;
+}
+#faqQuestions > div:hover{
+    background-color: rgb(180, 180, 180);
+}
+footer{
+    background-color: #102d37;
+    color:#e3f2fd;
+    padding: 25px 50px;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+footer p{
+    font-size: 1.2em;
+}
+footer p a:hover{
+    text-decoration: underline;
+}
+footer a{
+    color:#fbe072;
+    text-decoration: none;
+}
+footer a:hover{
+    color: #ffeda3;
+}
+footer .social img{
+    padding-top: 15px;
+}
+@media screen and (max-width: 900px) {
+nav, footer {
+        flex-direction: column;
+    }
+nav a {
+        display: block;
+        padding: 15px;
+    }   
+#faqTitle{
+display: flex;
+flex-direction: column;
+    }
+#faqQuestions{
+    width: 80vw;
+}
+footer {
+        margin-top: 25px;
+    }
+}
