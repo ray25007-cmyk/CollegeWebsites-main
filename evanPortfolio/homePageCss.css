@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url(navBar.css);
+*{
+    font-family: "Nunito",sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "Crete Round", serif;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img{
+    width: 40vw;
+}
+main>div{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap:20px;
+}
+main>div:nth-child(even){
+    background-color: #ACBAC4;
+    width:100%;
+    padding:50px 0px;
+    justify-content: center;
+}
+main>div>p{
+    width: 40vw;
+}
+#Title{
+    display: flex;
+    flex-direction: column;
+}
+#newNav, #ColumnAlign{
+    flex-direction: column;
+    align-items: center;
+}
+#GridSection{
+    display: grid;
+    grid-template-rows: 700px;
+    grid-template-columns: 10vw 25vw 6vw 1fr;
+}
+#GridSection>img{
+    position: relative;
+    grid-column: 3/5;
+    height: 600px;
+    width: auto;
+    grid-row: 1;
+}
+#GridSection>div{
+    position: relative;
+    grid-column: 2/4;
+    background-color: #ACBAC4;
+    border: black 3px solid;
+    padding: 40px;
+    z-index: 1;
+    grid-row: 1;
+}
+#GridSection>*{
+    box-shadow: rgba(101, 101, 101, 0.653) 3px 3px 4px;
+}
+#newNav>div{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+main>div>div>a{
+    background-color: #30364F;
+    text-decoration: none;
+    padding: 20px 40px;
+    border-radius: 10px;
+    color: #F0F0DB;
+}
+main>div>div>a:hover{
+    scale: 1.1;
+    color: #fffff6;
+    background-color: #4e577b;
+}
