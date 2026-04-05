@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conways | Evan Ray Portfolio</title>
+    <link rel="stylesheet" href="conwaysCSS.css">
 </head>
 <body>
     <header>
@@ -12,28 +13,232 @@
     </header>
     <main>
         <h1>Conway's Game of Life</h1>
-        <section>
-            <p>Conways Game of Life is a creation that has been around for over 50 years. Its rules are simple. There is a 2 dimensional grid with each square having two values, Off or On. During each iteration, each square follows specific rules.</p>
+        <section id="HeadingDiv">
+            <div>
+            <p>Conways Game of Life is a creation that has been around for over 50 years. Its rules are simple. There is a 2 dimensional grid with each square having two values, Off or On. During each iteration, each square follows these specific rules:</p>
             <ol>
                 <li>Any live cell with fewer than two live neighbours dies (referred to as underpopulation).</li>
                 <li>Any live cell with more than three live neighbours dies (referred to as overpopulation).</li>
                 <li>Any live cell with two or three live neighbours lives, unchanged, to the next generation.</li>
                 <li>Any dead cell with exactly three live neighbours comes to life.</li>
             </ol>
+            </div>
             <img src="Images/ConwaysWebsite.png" alt="Conways Game Of Life">
         </section>
-        <p>For my Final Web Design Project, I decided to create EvanGAMES, a website that contained a few games for people to mess around with. The two games I had planned were Conways Game of Life and DUTCH, a Card Game. While I didn't have the time to finish DUTCH, I did complete Conway's Game of Life.</p>
-    <section>
+        <p id="InfoP">For my Final Web Design Project, I decided to create EvanGAMES, a website that contained a few games for people to mess around with. The two games I had planned were Conways Game of Life and DUTCH, a Card Game. While I didn't have the time to finish DUTCH, I did complete Conway's Game of Life.</p>
+    <section id="CodeShowing">
         <h1>The Code</h1>
         <pre><code>
-            Alright, so I personally find the Conways I made to be very Unoptimized, so over this next week I'll make a better one that isn't so excessively long.
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Conways&lt;/title&gt;
+    &lt;style&gt;
+        body{
+            background-color: bisque;
+        }
+        main{
+            margin: auto;
+            background-color: black;
+            padding:1vw;
+            width: 47vw;
+            height: 47vw;
+            gap:1vw;
+            display: grid;
+        }
+        main&gt;div{
+            cursor: pointer;
+            background-color: white;
+        }
+        .onBlock{
+            background-color: red;
+        }
+        #StopButton{
+            display: none;
+        }
+    &lt;/style&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;main&gt;&lt;/main&gt;
+    &lt;button id="StartButton" onclick="startGame()"&gt;Start&lt;/button&gt;
+    &lt;button id="StopButton" onclick="stopGame()"&gt;Stop&lt;/button&gt;
+        
+    &lt;script&gt;
+        const gridMain=document.querySelector("main");
+        const startButton=document.querySelector("#StartButton");
+        const stopButton=document.querySelector("#StopButton");
+        const gridWidth=10;
+        let conwaysGridArray=[];
+        let isStarted=false;
+        gridMain.style.gap=8/gridWidth+"vw";
+        gridMain.style.padding=gridMain.style.gap;
+        gridMain.style.gridTemplateColumns="repeat("+gridWidth+", 1fr)";
+        gridMain.style.gridTemplateRows="repeat("+gridWidth+", 1fr)";
+
+        printSquares();
+
+        function printSquares(){
+            for (let i=0;i&lt;gridWidth**2;i++){
+                conwaysGridArray.push(0);
+                gridMain.innerHTML=gridMain.innerHTML+"&lt;div id='Square"+i+"' onclick='squareClicked("+i+")'&gt;&lt;/div&gt;";
+            }
+        }
+
+        function squareClicked(square){
+            if (!isStarted){
+                let currentSquare=document.querySelector("#Square"+square);
+                conwaysGridArray[square]=0;
+                if (currentSquare.classList.toggle("onBlock")){
+                    conwaysGridArray[square]=1;
+                }
+            }
+        }
+        
+        function startGame(){
+            startButton.style.display="none";
+            stopButton.style.display="block";
+            isStarted=true;
+            gameRun=setInterval(()=&gt;{
+                for (let i=0;i&lt;gridWidth**2;i++){
+                    let currentSquare=document.querySelector("#Square"+i)
+                    aliveAround=0;
+                    for (let j=-1;j&lt;2;j++){
+                        for (let k=-1;k&lt;2;k++){
+                            squareSelect=(((i+(j*gridWidth)+k)%gridWidth**2)+gridWidth**2)%gridWidth**2;
+                            let aroundSquare=document.querySelector("#Square"+squareSelect)
+                            if (squareSelect!=i){
+                                if (aroundSquare.classList.contains("onBlock")){
+                                    aliveAround+=1;
+                                }
+                            }
+                        }
+                    }
+                    if (currentSquare.classList.contains("onBlock")){
+                        if (aliveAround&lt;2 || aliveAround&gt;3){
+                            conwaysGridArray[i]=0;
+                        }
+                    } else if (aliveAround==3) {
+                        conwaysGridArray[i]=1;
+                    }
+                }
+                for (item in conwaysGridArray){
+                    let currentSquare=document.querySelector("#Square"+item)
+                    if (conwaysGridArray[item]==1){
+                        currentSquare.classList.add("onBlock");
+                    } else {
+                        currentSquare.classList.remove("onBlock");
+                    }
+                }
+            }, 200);
+        }
+    
+        function stopGame(){
+            isStarted=false;
+            startButton.style.display="block";
+            stopButton.style.display="none";
+            clearInterval(gameRun);
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
         </code></pre>
+        <div style="top: 450px;">This is the CSS part of the website, it sets things such as basic background colors for alive and dead Conways Cells.</div>
+        <div style="top: 800px;">This is the (incredibly small) body HTML of the website. It has the main that will be the Conways Grid, and also two buttons to turn it on and off.</div>
+        <div style="top: 1000px;">Here I introduce many variables, such as selectors for the Conways Grid and Buttons.</div>
+        <div style="top: 1250px;">This function will place the empty cells onto the Grid.</div>
+        <div style="top: 1400px;">When a square is clicked, this function will turn it on or off when the simulation isn't running.</div>
+        <div style="top: 1600px;">This function will start the Simulation when the start button is clicked.</div>
+        <div style="top: 1800px;">This part of the code looks at the nearby cells around each individual cell to see whether or not it should be alive in the next iteration.</div>
+        <div style="top: 2200px;">This part of the code quickly takes our knowledge of which ones should be off or on and applies that to the cells.</div>
+        <div style="top: 2430px;">This part turns off the simulation, so you can turn on or off cells manually.</div>
     </section>
-    <section>
-        <h1>Final Product</h1>
-        <div>Insert Working Conways Stuff Here</div>
+    <section id="BackChange">
+            <h1>Example:</h1>
+            <p style="text-align: center;">This Conways uses an inverse shading method, so if it is alive it disappears</p>
+            <main id="HelpDiv"></main>
+            <button id="StartButton" onclick="startGame()">Start</button><button id="StopButton" onclick="stopGame()">Stop</button>
     </section>
     </main>
     <footer><p>&COPY;2026 Evan Ray Portfolio</p><a href="site-plan.html">Site Plan</a></footer>
+    <script>
+        const gridMain=document.querySelector("#HelpDiv");
+        const startButton=document.querySelector("#StartButton");
+        const stopButton=document.querySelector("#StopButton");
+        const gridWidth=10;
+        let conwaysGridArray=[];
+        let isStarted=false;
+        gridMain.style.gap=8/gridWidth+"vw";
+        gridMain.style.padding=gridMain.style.gap;
+        gridMain.style.gridTemplateColumns="repeat("+gridWidth+", 1fr)";
+        gridMain.style.gridTemplateRows="repeat("+gridWidth+", 1fr)";
+
+        printSquares();
+
+        function printSquares(){
+            for (let i=0;i<gridWidth**2;i++){
+                conwaysGridArray.push(0);
+                gridMain.innerHTML=gridMain.innerHTML+"<div id='Square"+i+"' onclick='squareClicked("+i+")'></div>";
+            }
+        }
+
+        function squareClicked(square){
+            console.log(square)
+            if (!isStarted){
+                let currentSquare=document.querySelector("#Square"+square);
+                conwaysGridArray[square]=0;
+                if (currentSquare.classList.toggle("onBlock")){
+                    conwaysGridArray[square]=1;
+                }
+            }
+        }
+        
+        function startGame(){
+            startButton.style.display="none";
+            stopButton.style.display="block";
+            isStarted=true;
+            gameRun=setInterval(()=>{
+                for (let i=0;i<gridWidth**2;i++){
+                    let currentSquare=document.querySelector("#Square"+i)
+                    aliveAround=0;
+                    for (let j=-1;j<2;j++){
+                        for (let k=-1;k<2;k++){
+                            squareSelect=(((i+(j*gridWidth)+k)%gridWidth**2)+gridWidth**2)%gridWidth**2;
+                            let aroundSquare=document.querySelector("#Square"+squareSelect)
+                            if (squareSelect!=i){
+                                if (aroundSquare.classList.contains("onBlock")){
+                                    aliveAround+=1;
+                                }
+                            }
+                        }
+                    }
+                    if (currentSquare.classList.contains("onBlock")){
+                        if (aliveAround<2 || aliveAround>3){
+                            conwaysGridArray[i]=0;
+                        }
+                    } else if (aliveAround==3) {
+                        conwaysGridArray[i]=1;
+                    }
+                }
+                for (item in conwaysGridArray){
+                    let currentSquare=document.querySelector("#Square"+item)
+                    if (conwaysGridArray[item]==1){
+                        currentSquare.classList.add("onBlock");
+                    } else {
+                        currentSquare.classList.remove("onBlock");
+                    }
+                }
+            }, 200);
+        }
+    
+        function stopGame(){
+            isStarted=false;
+            startButton.style.display="block";
+            stopButton.style.display="none";
+            clearInterval(gameRun);
+        }
+    </script>
 </body>
 </html>

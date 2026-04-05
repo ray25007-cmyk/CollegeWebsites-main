@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url(navBar.css);
+*{
+    font-family: "Nunito",sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "Crete Round", serif;
+    text-align: center;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 50px;
+    margin-bottom: 20px;
+}
+#HeadingDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:40px;
+    background-color: #ACBAC4;
+    padding: 20px;
+}
+#HeadingDiv>img{
+    width: 800px;
+}
+#InfoP{
+    width: 600px;
+}
+#HelpDiv{
+    margin: auto;
+    background-color: black;
+    padding:1vw;
+    width: 47vw;
+    height: 47vw;
+    gap:1vw;
+    display: grid;
+}
+#HelpDiv>div:not(.onBlock){
+    cursor: pointer;
+    background-color: white;
+    width: auto;
+    height: 4vw;
+}
+#StopButton{
+    display: none;
+}
+pre{
+    display: flex;
+    align-self: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ACBAC4;
+    margin: 0px 300px;
+    padding: 40px;
+}
+#CodeShowing{
+    position: relative;
+    margin-bottom: 50px;
+}
+#CodeShowing>div{
+    background-color: #30364F;
+    color: #e0c563;
+    width: 200px;
+    padding: 20px;
+    text-align: center;
+    position:absolute;
+    height:100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#CodeShowing>div:nth-child(even){
+    right:75px;
+}
+#CodeShowing>div:nth-child(odd){
+    left:75px;
+}
+#BackChange{
+    background-color: #30364F;
+    padding: 20px 400px;
+    color: #e0c563;
+}
